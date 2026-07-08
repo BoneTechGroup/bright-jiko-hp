@@ -217,7 +217,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);
 
 /* ===================== スタッフ ===================== */
 .staff{padding:88px 0}
-.staff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;max-width:820px;margin:0 auto}
+.staff-grid{display:grid;grid-template-columns:1fr;gap:30px;max-width:430px;margin:0 auto}
 .scard{background:#fff;border-radius:var(--radius);padding:26px 24px 28px;text-align:center;box-shadow:var(--shadow-sm);
   transition:transform .28s,box-shadow .28s;border:1px solid #f9ecdf;position:relative}
 .scard:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
@@ -434,3 +434,17 @@ footer .copy{margin-top:24px;opacity:.6;font-size:.8rem}
 .mobile-nav.show{opacity:1;pointer-events:auto}
 .mobile-nav a{color:#fff;font-size:1.15rem;font-weight:800}
 .mobile-nav .close{position:absolute;top:24px;right:28px;font-size:2rem;color:#fff;background:none;border:none}
+
+/* ===================== ヘッダーロゴ画像 ===================== */
+.logo .mark-logo{width:46px;height:46px;border-radius:12px;object-fit:cover;box-shadow:var(--shadow-sm);flex:0 0 auto}
+
+/* ===================== SNSセクション ===================== */
+.sns{padding:88px 0;background:#fff}
+.sns-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:920px;margin:0 auto;align-items:start}
+.sns-card{background:var(--mint);border:1px solid #f7e8d8;border-radius:20px;padding:18px;box-shadow:var(--shadow-sm)}
+.sns-card h3{text-align:center;font-size:1rem;font-weight:900;margin-bottom:12px}
+.sns-card .frame{border-radius:14px;overflow:hidden;background:#fff;min-height:400px}
+.sns-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.btn-tiktok{background:#111;color:#fff}
+.btn-insta{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff}
+@media (max-width:860px){.sns-grid{grid-template-columns:1fr}}
