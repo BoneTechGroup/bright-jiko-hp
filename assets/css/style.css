@@ -451,8 +451,8 @@ footer .copy{margin-top:24px;opacity:.6;font-size:.8rem}
 /* ===================== パララックス帯(背景固定・記事だけスクロール) ===================== */
 .plx-band{position:relative;padding:120px 22px;text-align:center;color:#fff;overflow:hidden;
   background:
-    linear-gradient(135deg,rgba(217,106,36,.93),rgba(179,84,26,.90)),
-    url("../イラスト/亀ロゴ透過.png") center/380px repeat;
+    linear-gradient(135deg,rgba(217,106,36,.84),rgba(179,84,26,.82)),
+    url("../イラスト/亀ロゴ透過.png") center/480px repeat;
   background-attachment:fixed,fixed}
 .plx-band h2{font-size:clamp(1.35rem,3.6vw,2.1rem);font-weight:900;letter-spacing:.05em;line-height:1.6;
   text-shadow:0 2px 16px rgba(90,40,0,.45)}
@@ -461,3 +461,14 @@ footer .copy{margin-top:24px;opacity:.6;font-size:.8rem}
 .plx-band .plx-btn{margin-top:26px}
 /* iOS等はbackground-attachment:fixedが効かないため通常スクロールにフォールバック */
 @media (max-width:900px){.plx-band{background-attachment:scroll,scroll;padding:78px 18px;background-size:auto,260px}}
+/* ===================== 亀ロゴの活躍ポイント ===================== */
+/* ヒーロー背景にビッグ亀(うっすら) */
+.hero-turtle{position:absolute;right:-6%;top:4%;width:46%;max-width:640px;opacity:.13;
+  transform:rotate(-8deg);z-index:1;pointer-events:none;animation:turtleswim 14s ease-in-out infinite}
+@keyframes turtleswim{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(-5deg) translateY(-18px)}}
+@media (max-width:900px){.hero-turtle{width:70%;right:-14%;top:2%;opacity:.10}}
+/* フッターにも亀の透かし */
+footer{position:relative;overflow:hidden}
+footer::after{content:"";position:absolute;right:-50px;bottom:-46px;width:360px;height:280px;
+  background:url("../イラスト/亀ロゴ透過.png") center/contain no-repeat;opacity:.16;
+  transform:rotate(-10deg);pointer-events:none;filter:brightness(3)}
