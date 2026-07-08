@@ -70,6 +70,18 @@ if (totop) {
   const fmt = n => n.toLocaleString('ja-JP');
   let cur = 0;
 
+  // ===== 多言語対応（<html lang> に応じて計算式の説明文を切替）=====
+  const LANG = (document.documentElement.lang || 'ja').slice(0, 2).toLowerCase();
+  const CALC_TXT = {
+    ja: (tg, v, t) => `4,300円 × <b>${fmt(tg)}日</b>（実通院${v}日×2=${fmt(v*2)}日 と 通院期間${t}日 の少ない方）`,
+    en: (tg, v, t) => `¥4,300 × <b>${fmt(tg)} days</b> (the smaller of: actual visits ${v}×2 = ${fmt(v*2)} days, and treatment period ${t} days)`,
+    pt: (tg, v, t) => `¥4.300 × <b>${fmt(tg)} dias</b> (o menor entre: consultas reais ${v}×2 = ${fmt(v*2)} dias, e período de tratamento ${t} dias)`,
+    zh: (tg, v, t) => `4,300日元 × <b>${fmt(tg)}天</b>（取以下较小值：实际就诊${v}天×2=${fmt(v*2)}天 与 治疗期间${t}天）`,
+    tl: (tg, v, t) => `¥4,300 × <b>${fmt(tg)} araw</b> (mas maliit sa: aktwal na pagpapagamot ${v}×2 = ${fmt(v*2)} araw, at panahon ng paggamot ${t} araw)`,
+    vi: (tg, v, t) => `4.300 yên × <b>${fmt(tg)} ngày</b> (giá trị nhỏ hơn giữa: số lần khám thực tế ${v}×2 = ${fmt(v*2)} ngày, và thời gian điều trị ${t} ngày)`,
+  };
+  const calcTxt = CALC_TXT[LANG] || CALC_TXT.ja;
+
   function animateTo(target) {
     cancelAnimationFrame(animateTo._r);
     yenEl.textContent = fmt(target); // 確実に最終値を表示（環境非依存）
@@ -90,7 +102,7 @@ if (totop) {
     // 対象日数 = min(実通院日数×2, 通院期間の日数)
     const target = Math.min(v * 2, t);
     const yen = target * DAILY;
-    calcEl.innerHTML = `4,300円 × <b>${fmt(target)}日</b>（実通院${v}日×2=${fmt(v*2)}日 と 通院期間${t}日 の少ない方）`;
+    calcEl.innerHTML = calcTxt(target, v, t);
     animateTo(yen);
   }
   // レンジと数値入力の同期
