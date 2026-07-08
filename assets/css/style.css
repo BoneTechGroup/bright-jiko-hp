@@ -471,7 +471,7 @@ footer .copy{margin-top:24px;opacity:.6;font-size:.8rem}
   transform:rotate(-8deg);z-index:1;pointer-events:none;animation:turtleswim 14s ease-in-out infinite}
 @keyframes turtleswim{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(-5deg) translateY(-18px)}}
 /* スマホ: 亀は一番上ではなくタイトル文字の背後に半透明で */
-@media (max-width:900px){.hero-turtle{width:80%;right:-18%;top:118px;opacity:.12}}
+@media (max-width:900px){.hero-turtle{width:78%;right:-2%;top:118px;opacity:.12}}
 /* フッターにも亀の透かし */
 footer{position:relative;overflow:hidden}
 footer::after{content:"";position:absolute;right:-50px;bottom:-46px;width:360px;height:280px;
