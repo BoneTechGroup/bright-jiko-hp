@@ -94,46 +94,37 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,253,248,.94);
 .btn-insta{background:linear-gradient(45deg,#F2836B,#E9799B);color:#fff}
 
 /* ---------------- ヒーロー ---------------- */
-.hero{position:relative;min-height:100svh;background:var(--paper);overflow:hidden;display:flex;align-items:center}
-.films{position:absolute;top:0;bottom:0;left:34%;right:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
-.film{position:relative;overflow:hidden}
-.reel{display:flex;flex-direction:column;will-change:transform;animation:reelUp 64s linear infinite}
-.reel img{width:100%;height:auto;margin-bottom:14px}
-.f1 .reel{animation-duration:70s}
-.f2 .reel{animation-direction:reverse;animation-duration:88s}
-.f3 .reel{animation-duration:78s}
-@keyframes reelUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
-.films::before{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(90deg,var(--paper) 0%,rgba(255,253,248,.62) 22%,rgba(255,253,248,.1) 55%,rgba(255,253,248,.18) 100%)}
-.hero-inner{position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;padding:120px 5vw 110px}
-.hero-vertical{font-family:var(--mincho);font-weight:700;font-size:clamp(1.05rem,1.9vw,1.45rem);
-  letter-spacing:.3em;margin-bottom:34px;color:var(--ink)}
+.hero{position:relative;background:var(--paper);overflow:hidden;padding-bottom:0}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;padding:40px 5vw 26px}
+.hero-vertical{font-family:var(--mincho);font-weight:700;font-size:clamp(1.05rem,1.9vw,1.5rem);
+  letter-spacing:.3em;margin-bottom:18px;color:var(--ink)}
 .hero-title{display:block}
 .hero-title .row{display:block;font-family:var(--disp);font-weight:600;
-  font-size:clamp(3rem,9vw,7.4rem);line-height:1.02;letter-spacing:.05em;color:var(--ink)}
+  font-size:clamp(3.2rem,9.2vw,6.9rem);line-height:1;letter-spacing:.04em;color:var(--ink)}
 .hero-title .row b{font-weight:600;display:inline-block}
 .hero-title .c1{color:var(--coral)}
 .hero-title .c2{color:var(--yellow)}
 .hero-title .c3{color:var(--green)}
 .hero-title .c4{color:var(--blue)}
 .hero-title .c5{color:var(--pink)}
-.hero-title .jp-row{margin-top:30px;line-height:1}
+.hero-title .jp-row{margin-top:18px;line-height:1}
 .hero-title .jp{display:inline-block;font-family:var(--font);font-weight:900;
-  font-size:clamp(1rem,2.1vw,1.4rem);letter-spacing:.04em;line-height:1.8;
-  background:rgba(255,255,255,.94);padding:12px 22px;border-radius:12px;box-shadow:var(--shadow-sm)}
+  font-size:clamp(1.1rem,2.5vw,1.7rem);letter-spacing:.04em;line-height:1.85}
 .hero-title .jp .mk{background:linear-gradient(transparent 62%,var(--yellow) 62%);padding:0 .08em}
-.hero-title .jp em{font-style:normal;font-family:var(--disp);font-weight:700;color:var(--coral-deep);font-size:1.45em;vertical-align:-.06em;margin-left:.06em}
-.hero-lead{display:inline-block;margin:26px 0 30px;color:#4b453f;font-size:.98rem;line-height:2.1;
-  background:rgba(255,253,248,.88);padding:10px 18px;border-radius:12px}
+.hero-title .jp em{font-style:normal;font-family:var(--disp);font-weight:700;color:var(--coral-deep);font-size:1.5em;vertical-align:-.08em;margin-left:.06em}
+.hero-lead{margin:12px 0 22px;color:var(--ink-soft);font-size:.98rem;line-height:2.05}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
 .cut{position:absolute;pointer-events:none;filter:drop-shadow(0 12px 26px rgba(0,0,0,.16));z-index:3}
-.cut-iwai{right:5vw;bottom:56px;width:clamp(120px,14vw,196px);animation:floaty 5s ease-in-out infinite}
-.cut-natumi{left:46%;top:104px;width:clamp(84px,9vw,132px);transform:rotate(5deg);animation:floaty 6s 1.2s ease-in-out infinite}
+.cut-iwai{right:6vw;top:200px;width:clamp(140px,17vw,250px);animation:floaty 5s ease-in-out infinite}
+.cut-natumi{right:26vw;top:44px;width:clamp(88px,10vw,142px);transform:rotate(6deg);animation:floaty 6s 1.2s ease-in-out infinite}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.scroll-ind{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;
-  align-items:center;gap:9px;font-family:var(--disp);font-size:.62rem;letter-spacing:.4em;color:var(--ink-soft)}
-.scroll-ind .m{width:1px;height:36px;background:var(--coral);transform-origin:top;animation:scrl 1.9s ease-in-out infinite}
-@keyframes scrl{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+.scroll-ind{display:none}
+/* 大きな写真が右から左へ流れ続けるフィルムストリップ */
+.filmstrip{overflow:hidden;padding:6px 0 42px}
+.strip{display:flex;width:max-content;will-change:transform;animation:stripmove 46s linear infinite}
+.strip img{height:clamp(300px,48vh,520px);width:auto;border-radius:20px;margin-right:18px;
+  box-shadow:0 16px 40px rgba(120,80,50,.18)}
+@keyframes stripmove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------------- 症状ティッカー ---------------- */
 .marquee{background:var(--ink);padding:16px 0;overflow:hidden}
@@ -407,20 +398,17 @@ footer .mark-logo{width:40px;height:40px;border-radius:10px}
   html{scroll-padding-top:116px}
   body{font-size:15px}
   br.sp{display:inline}
-  .hero{min-height:auto}
-  .films{left:0;grid-template-columns:1fr 1fr}
-  .film.f3{display:none}
-  .films::before{background:linear-gradient(180deg,rgba(255,253,248,.9) 0%,rgba(255,253,248,.72) 45%,rgba(255,253,248,.9) 100%)}
-  .hero-inner{padding:76px 6vw 90px}
-  .hero-vertical{font-size:1rem;margin-bottom:24px}
-  .hero-title .row{font-size:clamp(2.7rem,13.5vw,4.4rem)}
-  .hero-title .jp-row{margin-top:22px}
-  .hero-title .jp{font-size:.98rem;line-height:1.9;padding:12px 16px}
-  .hero-lead{font-size:.9rem;padding:8px 14px}
+  .hero-inner{padding:28px 6vw 18px}
+  .hero-vertical{font-size:.96rem;margin-bottom:16px}
+  .hero-title .row{font-size:clamp(2.7rem,13.2vw,4.4rem)}
+  .hero-title .jp-row{margin-top:16px}
+  .hero-title .jp{font-size:1.02rem;line-height:1.9}
+  .hero-lead{font-size:.86rem;margin:8px 0 16px}
   .hero-cta .btn{width:100%}
-  .cut-iwai{right:4vw;bottom:auto;top:8px;width:96px}
+  .cut-iwai{right:4vw;top:6px;width:96px}
   .cut-natumi{display:none}
-  .scroll-ind{display:none}
+  .filmstrip{padding:4px 0 30px}
+  .strip img{height:238px;border-radius:14px;margin-right:12px}
   .worry,.zero,.fee,.sym-menu,.reasons,.flow,.staff,.gallery,.sns,.faq,.access{padding:74px 0}
   .sec-head{margin-bottom:46px}
   .feat-num{top:-46px;font-size:4.6rem}
