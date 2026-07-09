@@ -107,11 +107,11 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,253,248,.94);
 .hero-title .c3{color:var(--green)}
 .hero-title .c4{color:var(--blue)}
 .hero-title .c5{color:var(--pink)}
-.hero-title .jp-row{margin-top:18px;line-height:1}
-.hero-title .jp{display:inline-block;font-family:var(--font);font-weight:900;
+.hero-bottom{padding:28px 5vw 48px}
+.hero-jp{font-family:var(--font);font-weight:900;
   font-size:clamp(1.1rem,2.5vw,1.7rem);letter-spacing:.04em;line-height:1.85}
-.hero-title .jp .mk{background:linear-gradient(transparent 62%,var(--yellow) 62%);padding:0 .08em}
-.hero-title .jp em{font-style:normal;font-family:var(--disp);font-weight:700;color:var(--coral-deep);font-size:1.5em;vertical-align:-.08em;margin-left:.06em}
+.hero-jp .mk{background:linear-gradient(transparent 62%,var(--yellow) 62%);padding:0 .08em}
+.hero-jp em{font-style:normal;font-family:var(--disp);font-weight:700;color:var(--coral-deep);font-size:1.5em;vertical-align:-.08em;margin-left:.06em}
 .hero-lead{margin:12px 0 22px;color:var(--ink-soft);font-size:.98rem;line-height:2.05}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
 .cut{position:absolute;pointer-events:none;filter:drop-shadow(0 12px 26px rgba(0,0,0,.16));z-index:3}
@@ -120,7 +120,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,253,248,.94);
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 .scroll-ind{display:none}
 /* 大きな写真が右から左へ流れ続けるフィルムストリップ */
-.filmstrip{overflow:hidden;padding:6px 0 42px}
+.filmstrip{overflow:hidden;padding:8px 0 0}
 .strip{display:flex;width:max-content;will-change:transform;animation:stripmove 46s linear infinite}
 .strip img{height:clamp(300px,48vh,520px);width:auto;border-radius:20px;margin-right:18px;
   box-shadow:0 16px 40px rgba(120,80,50,.18)}
@@ -398,16 +398,16 @@ footer .mark-logo{width:40px;height:40px;border-radius:10px}
   html{scroll-padding-top:116px}
   body{font-size:15px}
   br.sp{display:inline}
-  .hero-inner{padding:28px 6vw 18px}
+  .hero-inner{padding:28px 6vw 14px}
+  .hero-bottom{padding:20px 6vw 30px}
   .hero-vertical{font-size:.96rem;margin-bottom:16px}
   .hero-title .row{font-size:clamp(2.7rem,13.2vw,4.4rem)}
-  .hero-title .jp-row{margin-top:16px}
-  .hero-title .jp{font-size:1.02rem;line-height:1.9}
+  .hero-jp{font-size:1.02rem;line-height:1.9}
   .hero-lead{font-size:.86rem;margin:8px 0 16px}
   .hero-cta .btn{width:100%}
   .cut-iwai{right:4vw;top:6px;width:96px}
   .cut-natumi{display:none}
-  .filmstrip{padding:4px 0 30px}
+  .filmstrip{padding:4px 0 0}
   .strip img{height:238px;border-radius:14px;margin-right:12px}
   .worry,.zero,.fee,.sym-menu,.reasons,.flow,.staff,.gallery,.sns,.faq,.access{padding:74px 0}
   .sec-head{margin-bottom:46px}
