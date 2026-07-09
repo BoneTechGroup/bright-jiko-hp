@@ -1,0 +1,428 @@
+/* ===================================================================
+   有輝接骨院／Bright整体 — デザインB「ミニマル・クリニック」
+   白基調 / 細い罫線 / 余白広め / ブランドオレンジは差し色に限定
+   ※HTML構造・クラス名はデザインAと共通。このCSS単体で完結する。
+   =================================================================== */
+:root{
+  /* 変数名はデザインAと互換（HTML内のインラインstyleが参照するため） */
+  --tiffany:#e2793c;
+  --tiffany-deep:#c9631f;
+  --tiffany-dark:#a54e15;
+  --tiffany-light:#f0b88e;
+  --tiffany-pale:#f8f3ec;
+  --mint:#ffffff;
+  --ink:#1e2a2c;
+  --ink-soft:#5f6d6d;
+  --accent:#2e4fb5;
+  --accent-deep:#22398c;
+  --gold:#ffcf5c;
+  --line:#06C755;
+  --white:#fff;
+  --hair:#e7e2da;
+  --bg-soft:#f8f6f2;
+  --shadow:0 10px 34px rgba(30,42,44,.08);
+  --shadow-sm:0 4px 14px rgba(30,42,44,.06);
+  --shadow-lg:0 24px 60px rgba(30,42,44,.12);
+  --radius:16px;
+  --maxw:1140px;
+  --font:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Meiryo",sans-serif;
+  --font-en:"Montserrat","Zen Kaku Gothic New",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:130px}
+html,body{overflow-x:clip;max-width:100%;overscroll-behavior-x:none}
+@supports not (overflow: clip){html,body{overflow-x:hidden}}
+body{font-family:var(--font);color:var(--ink);background:var(--mint);line-height:1.95;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:15.5px}
+input[type="range"]{touch-action:none}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{position:relative}
+::selection{background:var(--tiffany);color:#fff}
+:focus-visible{outline:2px solid var(--tiffany);outline-offset:2px}
+br.sp{display:none}
+
+/* ---------------- スクロール進捗バー ---------------- */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:300;background:var(--tiffany);transition:width .1s}
+
+/* ---------------- 共通見出し ---------------- */
+.sec-head{text-align:center;margin-bottom:60px}
+.sec-head .en{display:inline-block;font-family:var(--font-en);font-size:.7rem;font-weight:600;
+  letter-spacing:.42em;text-transform:uppercase;color:var(--tiffany-deep);margin-bottom:16px}
+.sec-head .en::after{content:"";display:block;width:34px;height:1px;background:var(--tiffany);margin:12px auto 0}
+.sec-head h2{font-size:clamp(1.5rem,3.6vw,2.15rem);font-weight:700;letter-spacing:.05em;line-height:1.55}
+.sec-head h2 .hl{background:linear-gradient(transparent 86%,var(--tiffany) 86%);padding:0 .06em}
+.sec-head p{color:var(--ink-soft);margin-top:18px;font-size:.93rem;line-height:2.1}
+
+/* ---------------- ボタン ---------------- */
+.btn{display:inline-flex;flex-direction:row;align-items:center;justify-content:center;gap:.5em;
+  font-weight:600;font-family:var(--font);border-radius:999px;padding:15px 32px;font-size:.98rem;
+  letter-spacing:.03em;cursor:pointer;border:none;transition:transform .25s,box-shadow .25s,opacity .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.btn-line{background:var(--line);color:#fff}
+.btn-tel{background:var(--ink);color:#fff}
+.btn-ghost{background:#fff;border:1px solid var(--ink);color:var(--ink)}
+.btn-lg{flex-direction:column;gap:2px;padding:17px 42px;font-size:1.04rem}
+.btn .sub{font-size:.7rem;font-weight:500;opacity:.75;letter-spacing:.08em}
+.btn-tiktok{background:var(--ink);color:#fff}
+.btn-insta{background:#fff;border:1px solid var(--ink);color:var(--ink)}
+
+/* ---------------- ヘッダー ---------------- */
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
+.hbar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:12px;padding-bottom:0}
+.logo{display:flex;align-items:center;gap:12px;padding-bottom:12px}
+.mark-logo{width:42px;height:42px;border-radius:10px;object-fit:cover}
+.logo span{font-weight:700;font-size:1rem;line-height:1.3;letter-spacing:.02em}
+.logo small{display:block;font-size:.66rem;font-weight:500;color:var(--ink-soft);letter-spacing:.1em}
+.hnav{display:flex;gap:2px;margin-left:auto;padding-bottom:12px}
+.navlink{padding:9px 12px;font-size:.85rem;font-weight:500;color:var(--ink-soft);border-radius:8px;transition:.2s}
+.navlink:hover{color:var(--ink);background:var(--bg-soft)}
+.hcta{display:flex;gap:8px;padding-bottom:12px}
+.hcta .btn{padding:10px 18px;font-size:.84rem}
+.burger{display:none;margin-left:auto;width:44px;height:44px;background:#fff;border:1px solid var(--hair);
+  border-radius:10px;font-size:1.25rem;color:var(--ink);cursor:pointer;align-items:center;justify-content:center;margin-bottom:12px}
+/* 言語切替 = ヘッダー2段目（全幅・中央） */
+.lang-switch{order:10;width:100%;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;
+  padding:9px 0;border-top:1px solid var(--hair)}
+.lang-switch a{font-size:.74rem;font-weight:600;padding:4px 13px;border:1px solid var(--hair);
+  border-radius:999px;color:var(--ink-soft);letter-spacing:.03em;transition:.2s}
+.lang-switch a:hover{border-color:var(--ink);color:var(--ink)}
+.lang-switch a.cur{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* ---------------- モバイルメニュー ---------------- */
+.mobile-nav{position:fixed;inset:0;background:#fff;z-index:400;display:flex;flex-direction:column;
+  padding:88px 34px 40px;transform:translateX(100%);transition:transform .35s ease}
+.mobile-nav.show{transform:translateX(0)}
+.mobile-nav a{padding:17px 2px;border-bottom:1px solid var(--hair);font-weight:600;font-size:1.02rem}
+.mobile-nav .btn{border:none;margin-top:26px;justify-content:center}
+.mobile-nav .close{position:absolute;top:20px;right:22px;width:44px;height:44px;border-radius:50%;
+  background:#fff;border:1px solid var(--hair);font-size:1.05rem;cursor:pointer;color:var(--ink)}
+
+/* ---------------- ヒーロー ---------------- */
+.hero{padding:76px 0 96px;background:#fff;overflow:hidden}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.06fr .94fr;gap:52px;align-items:center}
+.hero-turtle{position:absolute;right:1%;top:5%;width:min(430px,34%);opacity:.055;pointer-events:none;z-index:0}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--hair);border-radius:999px;
+  padding:8px 18px;font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--ink-soft);
+  background:#fff;margin-bottom:26px}
+.hero h1{font-size:clamp(1.85rem,4.1vw,2.95rem);font-weight:900;line-height:1.42;letter-spacing:.015em}
+.hero h1 .nb{display:inline-block}
+.hero h1 .marker{background:linear-gradient(transparent 84%,var(--tiffany) 84%);padding:0 .04em}
+.hero h1 .big{display:inline-block;font-size:1.16em;margin-top:8px}
+.hero h1 .zero{color:var(--tiffany-deep)}
+.hero .lead{margin:24px 0 28px;color:var(--ink-soft);font-size:.99rem;line-height:2.15}
+.trust-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:.76rem;font-weight:600;color:var(--ink-soft);
+  border:1px solid var(--hair);border-radius:999px;padding:7px 14px;background:#fff;letter-spacing:.02em}
+.chip svg{width:15px;height:15px;fill:var(--tiffany);flex:none}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-media{position:relative;z-index:1}
+.hero-photo{position:relative;aspect-ratio:4/3.15;border-radius:20px;overflow:hidden;border:1px solid var(--hair)}
+.hero-photo .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
+.hero-photo .slide.active{opacity:1}
+.hero-char{position:absolute;right:-12px;bottom:-20px;width:130px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.14));z-index:2}
+.badge-0en{position:absolute;left:-14px;top:-18px;z-index:2;width:112px;height:112px;border-radius:50%;
+  background:#fff;border:1px solid var(--tiffany);color:var(--tiffany-deep);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1px;font-size:.67rem;font-weight:700;text-align:center;
+  box-shadow:var(--shadow-sm)}
+.badge-0en b{font-size:1.75rem;font-weight:900;line-height:1.15}
+.scroll-ind{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;
+  align-items:center;gap:9px;font-family:var(--font-en);font-size:.62rem;letter-spacing:.4em;color:var(--ink-soft)}
+.scroll-ind .m{width:1px;height:34px;background:var(--ink-soft);transform-origin:top;animation:scrl 1.9s ease-in-out infinite}
+@keyframes scrl{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+.wave{display:none}
+
+/* ---------------- 症状マーキー ---------------- */
+.marquee{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:15px 0;overflow:hidden;background:#fff}
+.marquee .track{display:flex;width:max-content;animation:marq 30s linear infinite}
+.marquee span{font-size:.86rem;font-weight:500;color:var(--ink-soft);letter-spacing:.14em;white-space:nowrap}
+.marquee span::after{content:"・";color:var(--tiffany);margin:0 26px}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------------- セクション共通 ---------------- */
+.worry,.zero,.fee,.sym-menu,.reasons,.flow,.staff,.gallery,.sns,.faq,.access{padding:104px 0}
+
+/* ---------------- お悩み ---------------- */
+.worry{background:var(--bg-soft)}
+.worry-grid{display:grid;grid-template-columns:290px 1fr;gap:46px;align-items:end}
+.worry-char img{max-width:250px;margin:0 auto}
+.bubbles{display:flex;flex-direction:column;gap:12px}
+.bubble{background:#fff;border:1px solid var(--hair);border-radius:14px;padding:17px 22px;font-size:.95rem;line-height:1.9}
+.bubble b{font-weight:700;background:linear-gradient(transparent 86%,var(--tiffany-light) 86%)}
+.worry-note{margin-top:26px;font-weight:700;font-size:1.06rem;color:var(--tiffany-deep);text-align:center;letter-spacing:.04em}
+
+/* ---------------- 自賠責0円 ---------------- */
+section.zero{background:#fff}
+.zero-card{display:grid;grid-template-columns:1fr 280px;gap:36px;align-items:center;
+  border:1px solid var(--hair);border-radius:22px;padding:56px;background:#fff}
+.zero-card .big{font-size:clamp(2.1rem,5.6vw,3.4rem);font-weight:900;letter-spacing:.02em;margin:10px 0 14px}
+.zero-card .big em{font-style:normal;color:var(--tiffany-deep)}
+.zero-card p{color:var(--ink-soft);font-size:.95rem}
+.zero-card p b{color:var(--ink);font-weight:700}
+.zero-card img{width:100%;max-width:250px;margin:0 auto}
+
+/* ---------------- パララックス帯 ---------------- */
+.plx-band{background:var(--ink);color:#fff;text-align:center;padding:92px 24px}
+.plx-band h2{font-size:clamp(1.35rem,3.3vw,1.95rem);font-weight:700;letter-spacing:.08em;line-height:1.75}
+.plx-band h2::before{content:"";display:block;width:38px;height:1px;background:var(--tiffany);margin:0 auto 30px}
+.plx-band p{margin-top:16px;font-size:.92rem;opacity:.72;letter-spacing:.04em}
+.plx-btn{margin-top:34px}
+.plx-btn .btn-line{box-shadow:none}
+
+/* ---------------- 料金・シミュレーター ---------------- */
+.fee{background:var(--bg-soft)}
+.fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:26px}
+.fee-box{background:#fff;border:1px solid var(--hair);border-radius:18px;padding:40px 36px}
+.fee-box h3{font-size:1.02rem;font-weight:700;letter-spacing:.06em;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--hair)}
+.fee-box .amt{font-size:2.7rem;font-weight:900;color:var(--tiffany-deep);letter-spacing:.01em;line-height:1.3}
+.fee-box .amt small{font-size:.9rem;font-weight:600;color:var(--ink-soft);margin-left:4px}
+.fee-box .formula{display:inline-block;background:var(--bg-soft);border-radius:8px;padding:7px 16px;
+  font-size:.86rem;font-weight:600;color:var(--ink-soft);margin:12px 0}
+.fee-box p{font-size:.88rem;color:var(--ink-soft)}
+.fee-box p b{color:var(--ink)}
+
+.sim{background:#fff;border:1px solid var(--hair);border-top:2px solid var(--tiffany);border-radius:20px;padding:48px}
+.sim-head h3{font-size:1.28rem;font-weight:700;letter-spacing:.03em}
+.sim-head p{color:var(--ink-soft);font-size:.9rem;margin-top:8px}
+.sim-head{margin-bottom:34px}
+.sim-body{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.sim-field{margin-bottom:28px}
+.sim-field label{display:block;font-weight:700;font-size:.94rem;margin-bottom:12px}
+.sim-field .hint{font-weight:500;font-size:.76rem;color:var(--ink-soft)}
+.sim-input{display:flex;align-items:center;gap:16px}
+.sim-input input[type="range"]{flex:1;-webkit-appearance:none;appearance:none;height:2px;background:var(--hair);border-radius:2px;outline:none}
+.sim-input input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;
+  border-radius:50%;background:#fff;border:2px solid var(--tiffany);cursor:pointer;box-shadow:var(--shadow-sm)}
+.sim-input input[type="range"]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;
+  border:2px solid var(--tiffany);cursor:pointer}
+.sim-num{display:flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;color:var(--ink-soft)}
+.sim-num input{width:76px;padding:9px 10px;border:1px solid var(--hair);border-radius:9px;
+  font-size:1.02rem;font-weight:700;text-align:right;color:var(--ink);font-family:var(--font)}
+.sim-result{background:var(--ink);color:#fff;border-radius:18px;padding:38px 30px;text-align:center}
+.sim-result .lbl{font-size:.8rem;letter-spacing:.14em;opacity:.75}
+.sim-result .val{font-size:clamp(2.2rem,4.6vw,2.9rem);font-weight:900;margin:10px 0 6px;letter-spacing:.01em}
+.sim-result .val small{font-size:1rem;font-weight:500;opacity:.85;margin-left:2px}
+.sim-result .calc{font-size:.78rem;opacity:.7;line-height:1.9}
+.sim-result .calc b{color:var(--tiffany-light)}
+.sim-note{font-size:.77rem;color:var(--ink-soft);margin-top:22px;line-height:1.95}
+.sim-note b{color:var(--ink)}
+
+/* ---------------- 症状・事例メニュー ---------------- */
+.sym-menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.smitem{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--hair);
+  border-radius:14px;padding:16px 20px;transition:border-color .25s,transform .25s,box-shadow .25s}
+.smitem:hover{border-color:var(--tiffany);transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.smitem .ic{width:50px;height:50px;flex:none}
+.smitem .ic img{width:100%;height:100%;object-fit:contain}
+.smitem .lbl{font-weight:700;font-size:.95rem;letter-spacing:.02em}
+.smitem .arrow{margin-left:auto;font-size:.74rem;font-weight:600;color:var(--tiffany-deep);white-space:nowrap;transition:transform .25s}
+.smitem:hover .arrow{transform:translateX(3px)}
+
+/* ---------------- 選ばれる理由 ---------------- */
+.reasons{background:var(--bg-soft)}
+.reason-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.rcard{position:relative;background:#fff;border:1px solid var(--hair);border-radius:18px;padding:32px 24px;
+  transition:border-color .25s,transform .25s}
+.rcard:hover{border-color:var(--tiffany-light);transform:translateY(-3px)}
+.rcard .num{position:absolute;top:20px;right:22px;font-family:var(--font-en);font-size:1.8rem;font-weight:600;color:var(--hair)}
+.ricon{width:52px;height:52px;margin-bottom:18px}
+.ricon svg{width:100%;height:100%}
+.ic-a{fill:var(--tiffany)}
+.ic-b{fill:#f5e0cd}
+.ic-c{fill:#ccd5d4}
+.rcard h3{font-size:1.03rem;font-weight:700;letter-spacing:.03em;margin-bottom:10px}
+.rcard p{font-size:.85rem;color:var(--ink-soft);line-height:1.95}
+.cta-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  background:var(--tiffany-pale);border-color:transparent}
+.cta-card img{width:128px}
+
+/* ---------------- 施術の流れ ---------------- */
+.flow{background:#fff}
+.fsteps{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.fstep{text-align:center}
+.fstep .st{display:inline-block;font-family:var(--font-en);font-size:.66rem;font-weight:600;
+  letter-spacing:.3em;color:var(--tiffany-deep)}
+.fstep .fig{margin:12px 0 16px;aspect-ratio:1/1;border:1px solid var(--hair);border-radius:16px;
+  overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center}
+.fstep .fig img{width:86%;height:86%;object-fit:contain}
+.fstep h4{font-size:.98rem;font-weight:700;letter-spacing:.02em}
+.fstep p{font-size:.8rem;color:var(--ink-soft);margin-top:8px;text-align:left;line-height:1.9}
+
+/* ---------------- スタッフ ---------------- */
+.staff{background:var(--bg-soft)}
+.staff-grid{display:grid}
+.scard{display:flex;gap:38px;align-items:center;background:#fff;border:1px solid var(--hair);
+  border-radius:22px;padding:40px;max-width:780px;margin:0 auto;width:100%}
+.ph-wrap{position:relative;flex:none;width:250px}
+.sphoto{border-radius:16px;overflow:hidden;aspect-ratio:5/5.6;border:1px solid var(--hair)}
+.sphoto img{width:100%;height:100%;object-fit:cover}
+.schibi{position:absolute;right:-18px;bottom:-14px;width:92px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.12))}
+.sinfo .role{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.2em;color:var(--tiffany-deep);
+  border:1px solid var(--tiffany);border-radius:999px;padding:4px 14px;margin-bottom:12px}
+.sinfo h4{font-size:1.5rem;font-weight:700;letter-spacing:.06em;margin-bottom:12px}
+.sinfo p{font-size:.92rem;color:var(--ink-soft);line-height:2.1}
+
+/* ---------------- ギャラリー ---------------- */
+.gallery{background:#fff}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.gallery-grid figure{text-align:left}
+.ph-img{aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--hair);cursor:pointer}
+.ph-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gallery-grid figure:hover .ph-img img{transform:scale(1.045)}
+.gallery-grid figcaption{font-size:.82rem;color:var(--ink-soft);margin-top:10px;letter-spacing:.02em}
+.gallery-grid figcaption::before{content:"—";color:var(--tiffany);margin-right:8px}
+
+/* ---------------- SNS ---------------- */
+.sns{background:var(--bg-soft)}
+.sns-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.sns-card{background:#fff;border:1px solid var(--hair);border-radius:18px;padding:28px}
+.sns-card h3{text-align:center;font-size:1.02rem;font-weight:700;letter-spacing:.06em;margin-bottom:18px;
+  padding-bottom:16px;border-bottom:1px solid var(--hair)}
+.sns-card .frame{display:flex;justify-content:center;min-height:220px;overflow:hidden}
+.sns-btns{display:flex;justify-content:center;gap:14px;margin-top:34px;flex-wrap:wrap}
+
+/* ---------------- FAQ ---------------- */
+.faq{background:#fff}
+.faq-list{max-width:840px;margin:0 auto;border-top:1px solid var(--hair)}
+.faq-item{border-bottom:1px solid var(--hair)}
+.faq-q{display:flex;align-items:center;gap:16px;padding:24px 6px;font-weight:700;font-size:.99rem;
+  letter-spacing:.02em;cursor:pointer;transition:color .2s}
+.faq-q:hover{color:var(--tiffany-deep)}
+.qmark{flex:none;width:32px;height:32px;border-radius:9px;background:var(--tiffany-pale);color:var(--tiffany-deep);
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-weight:600;font-size:.9rem}
+.faq-q .plus{margin-left:auto;font-weight:400;font-size:1.15rem;color:var(--tiffany);transition:transform .3s}
+.faq-item.open .plus{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.faq-item.open .faq-a{max-height:600px}
+.faq-a p{padding:2px 6px 26px 54px;font-size:.9rem;color:var(--ink-soft);line-height:2.05}
+
+/* ---------------- アクセス ---------------- */
+.access{background:var(--bg-soft)}
+.ext-photo{max-width:740px;margin:0 auto 44px}
+.ext-photo img{border-radius:18px;border:1px solid var(--hair);width:100%}
+.ext-photo figcaption{text-align:center;font-size:.82rem;color:var(--ink-soft);margin-top:12px}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch}
+.info-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--hair);border-radius:18px;
+  overflow:hidden;border-spacing:0}
+.info-table th{width:108px;text-align:left;vertical-align:top;padding:17px 10px 17px 24px;
+  font-size:.84rem;font-weight:700;color:var(--ink-soft);letter-spacing:.08em;border-bottom:1px solid var(--hair)}
+.info-table td{padding:17px 24px 17px 10px;font-size:.9rem;border-bottom:1px solid var(--hair);line-height:1.9}
+.info-table tr:last-child th,.info-table tr:last-child td{border-bottom:none}
+.map-embed{border-radius:18px;overflow:hidden;border:1px solid var(--hair);min-height:380px}
+.map-embed iframe{width:100%;height:100%;min-height:380px;border:0;display:block;filter:grayscale(.85) contrast(1.02)}
+.map-embed:hover iframe{filter:grayscale(0)}
+
+/* ---------------- 最終CTA ---------------- */
+.final{background:var(--ink);color:#fff;text-align:center;padding:116px 0}
+.final-char{width:148px;margin:0 auto 28px}
+.final h2{font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:700;line-height:1.7;letter-spacing:.06em}
+.final h2::before{content:"";display:block;width:38px;height:1px;background:var(--tiffany);margin:0 auto 30px}
+.final p{margin:20px 0 38px;font-size:.94rem;opacity:.78;line-height:2.15}
+.final .hero-cta{justify-content:center}
+.final .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.55);color:#fff}
+
+/* ---------------- フッター ---------------- */
+footer{background:#131c1d;color:#c8d2d1;padding:64px 0 30px;font-size:.85rem;position:relative;overflow:hidden}
+footer::after{content:"";position:absolute;right:-40px;bottom:-40px;width:300px;height:240px;
+  background:url("../イラスト/亀ロゴ透過.png") center/contain no-repeat;opacity:.05;pointer-events:none}
+.fgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:start;position:relative;z-index:1}
+.fgrid p{line-height:2.1;opacity:.85}
+footer a:hover{color:#fff}
+footer .logo span{font-size:.95rem}
+.copy{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);
+  text-align:center;font-size:.73rem;opacity:.5;letter-spacing:.08em;position:relative;z-index:1}
+
+/* ---------------- トップへ戻る ---------------- */
+.totop{position:fixed;right:20px;bottom:92px;width:46px;height:46px;border-radius:50%;background:#fff;
+  border:1px solid var(--hair);color:var(--ink);font-size:1.05rem;cursor:pointer;z-index:95;
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:var(--shadow-sm)}
+.totop.show{opacity:1;pointer-events:auto}
+.totop:hover{transform:translateY(-3px)}
+
+/* ---------------- 固定CTAバー（スマホ） ---------------- */
+.fixbar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;grid-template-columns:1fr 1fr;gap:10px;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--hair)}
+.fixbar .btn{padding:14px 8px;font-size:.95rem}
+
+/* ---------------- ライトボックス ---------------- */
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(12,18,19,.94);display:flex;align-items:center;
+  justify-content:center;padding:32px;opacity:0;pointer-events:none;transition:opacity .3s}
+.lightbox.show{opacity:1;pointer-events:auto}
+.lightbox img{max-width:92%;max-height:86vh;border-radius:12px}
+.lb-close{position:absolute;top:18px;right:20px;width:44px;height:44px;border-radius:50%;background:transparent;
+  border:1px solid rgba(255,255,255,.45);color:#fff;font-size:1.05rem;cursor:pointer}
+
+/* ---------------- スクロール出現アニメーション ---------------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.reveal.left{transform:translateX(-28px)}
+.reveal.right{transform:translateX(28px)}
+.reveal.zoom{transform:scale(.96)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* ===================== レスポンシブ ===================== */
+@media (max-width:1080px){
+  .hnav{display:none}
+  .burger{display:flex}
+}
+@media (max-width:900px){
+  html{scroll-padding-top:118px}
+  body{font-size:15px}
+  .lang-switch{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:9px 4px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .lang-switch::-webkit-scrollbar{display:none}
+  .lang-switch a{flex:none}
+  br.sp{display:inline}
+  .hcta{display:none}
+  .hero{padding:44px 0 76px}
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-turtle{width:64%;right:-8%;top:90px;opacity:.05}
+  .hero-char{width:104px;right:-6px;bottom:-14px}
+  .badge-0en{width:98px;height:98px;left:-8px;top:-14px}
+  .badge-0en b{font-size:1.5rem}
+  .scroll-ind{display:none}
+  .worry,.zero,.fee,.sym-menu,.reasons,.flow,.staff,.gallery,.sns,.faq,.access{padding:68px 0}
+  .sec-head{margin-bottom:40px}
+  .worry-grid{grid-template-columns:1fr;gap:26px}
+  .worry-char img{max-width:180px}
+  .zero-card{grid-template-columns:1fr;padding:38px 26px;text-align:center}
+  .zero-card img{max-width:200px}
+  .plx-band{padding:66px 24px}
+  .fee-grid{grid-template-columns:1fr}
+  .sim{padding:30px 22px}
+  .sim-body{grid-template-columns:1fr;gap:26px}
+  .sym-menu-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .smitem{padding:13px 14px;gap:10px}
+  .smitem .ic{width:42px;height:42px}
+  .smitem .lbl{font-size:.85rem}
+  .smitem .arrow{display:none}
+  .reason-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .rcard{padding:24px 18px}
+  .fsteps{grid-template-columns:repeat(2,1fr);gap:16px}
+  .scard{flex-direction:column;padding:30px 24px;gap:26px;text-align:center}
+  .sinfo p{text-align:left}
+  .ph-wrap{width:220px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .sns-grid{grid-template-columns:1fr}
+  .access-grid{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr}
+  .final{padding:80px 0}
+  .fixbar{display:grid}
+  footer{padding-bottom:110px}
+}
+@media (max-width:560px){
+  .sym-menu-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .hero-cta .btn{width:100%}
+  .faq-a p{padding-left:8px}
+}
+@media (min-width:901px){
+  .totop{bottom:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
