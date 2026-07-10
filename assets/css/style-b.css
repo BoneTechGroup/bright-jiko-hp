@@ -181,13 +181,16 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,253,248,.94);
 
 /* ---------------- ブランドメッセージ帯 ---------------- */
 .bigband{background:var(--grad2);padding:66px 0;overflow:hidden;display:flex;flex-direction:column;gap:10px}
-/* 2本目の帯：亀ロゴのパターン背景が「止まって」見える固定背景ギミック */
-.bigband.alt{background-image:linear-gradient(rgba(255,253,248,.66),rgba(255,253,248,.66)),
+/* 亀ロゴ固定背景の帯：背景は止まり、記事だけがスクロールする */
+.plx-band{position:relative;text-align:center;padding:100px 24px;
+  background-image:linear-gradient(rgba(255,251,242,.72),rgba(255,251,242,.72)),
   url("../イラスト/亀ロゴ透過.png"),var(--grad);
-  background-size:cover,240px,cover;background-repeat:no-repeat,repeat,no-repeat;
-  background-attachment:scroll,fixed,scroll;padding:86px 0}
-.bigband.alt .bb-track{color:var(--ink);text-shadow:none;opacity:.92}
-.bigband.alt .bb-track i{color:var(--coral)}
+  background-size:cover,230px,cover;background-repeat:no-repeat,repeat,no-repeat;
+  background-attachment:scroll,fixed,scroll}
+.plx-band h2{font-family:var(--mincho);font-size:clamp(1.4rem,3.4vw,2rem);font-weight:900;
+  letter-spacing:.08em;line-height:1.8;color:var(--ink)}
+.plx-band p{margin-top:14px;font-size:.95rem;color:var(--ink-soft);letter-spacing:.04em}
+.plx-btn{margin-top:32px}
 .bb-track{display:flex;width:max-content;white-space:nowrap;animation:marq 44s linear infinite;
   font-family:var(--font);font-weight:900;font-size:clamp(2.1rem,5.6vw,4.2rem);color:#fff;
   letter-spacing:.06em;line-height:1.25;text-shadow:0 2px 0 rgba(255,255,255,.35)}
@@ -439,7 +442,7 @@ footer .mark-logo{width:40px;height:40px;border-radius:10px}
   .strip img{height:236px;border-radius:14px;margin-right:12px}
   .pop-1{top:-46px;right:3%;width:96px}
   .pop-2{bottom:-28px;left:2%;width:88px}
-  .bigband.alt{background-attachment:scroll,scroll;background-size:210px,cover}
+  .plx-band{background-attachment:scroll,scroll,scroll;background-size:cover,180px,cover;padding:70px 24px}
   .final{background-attachment:scroll}
   .hero-under{padding:18px 6vw 28px}
   .hero-jp{font-size:1.02rem;line-height:1.9}
